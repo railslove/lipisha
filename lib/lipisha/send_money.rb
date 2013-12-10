@@ -3,7 +3,7 @@ module Lipisha
     CALL_URL = 'https://www.lipisha.com/payments/accounts/index.php/v2/api/send_money'
 
     attr_accessor :account_number, :mobile_number, :amount
-    attr_accessor :success, :response, :status_code, :status_description, :reference, :customer_name, :sent_amount
+    attr_accessor :success, :response_body, :response, :status_code, :status_description, :reference, :customer_name, :sent_amount
 
     def initialize(args)
       @account_number = args[:account_number]
@@ -16,7 +16,8 @@ module Lipisha
     end
 
     def send!
-      self.response = JSON.parse connection.post(CALL_URL, self.to_params).body
+      self.response_body = connection.post(CALL_URL, self.to_params).body
+      self.response      = JSON.parse(self.response_body)
       status                  = response['status'] || {}
       self.status_code        = status['status_code']
       self.status_description = status['status_description']
