@@ -22,7 +22,11 @@ module Lipisha
       self.status_code        = status['status_code']
       self.status_description = status['status_description']
       self.success            = status['status'] == 'SUCCESS'
-      content                 = response['content'] || {}
+      if response['content'] && !response['content'].empty?
+        content = response['content']
+      else
+        content = {}
+      end
       self.reference          = content['reference']
       self.customer_name      = content['customer_name']
       self.sent_amount        = content['amount']
@@ -45,6 +49,7 @@ module Lipisha
 
     def connection
       @connection ||= Faraday.new do |faraday|
+        faraday.request :url_encoded
         faraday.adapter  Faraday.default_adapter
         faraday.use(Faraday::Response::Logger, Lipisha.logger) if Lipisha.logger
       end
