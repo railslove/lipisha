@@ -65,7 +65,7 @@ describe Lipisha::SendMoney do
       end
 
       subject { Lipisha::SendMoney.new(:amount => 1234, :mobile_number => '+25412345', :account_number => 'a') }
-      before { subject.connection.should_receive(:post).with(Lipisha::SendMoney::CALL_URL, subject.to_params).and_return(response) }
+      before { expect(subject.connection).to receive(:post).with(Lipisha::SendMoney::CALL_URL, subject.to_params).and_return(response) }
 
       it 'parses the response and sets accessors' do
         expect(subject.send!).to eql(false)
@@ -90,7 +90,7 @@ describe Lipisha::SendMoney do
         }})
       end
       subject { Lipisha::SendMoney.new(:amount => 1234, :mobile_number => '+25412345', :account_number => 'a') }
-      before { subject.connection.should_receive(:post).with(Lipisha::SendMoney::CALL_URL, subject.to_params).and_return(response) }
+      before { expect(subject.connection).to receive(:post).with(Lipisha::SendMoney::CALL_URL, subject.to_params).and_return(response) }
 
       it 'parses the response and sets accessors' do
         expect(subject.send!).to eql(true)

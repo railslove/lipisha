@@ -8,7 +8,7 @@ Gem::Specification.new do |spec|
   spec.version       = Lipisha::VERSION
   spec.authors       = ["Michael Bumann"]
   spec.email         = ["michael@railslove.com"]
-  spec.description   = %q{API wrapper for the Lipisha API. Currently supporting the send_money endpoint.}
+  spec.description   = %q{API wrapper for the Lipisha API. Currently supporting the send_money and confirm transaction endpoints.}
   spec.summary       = %q{API wrapper for Lipisha}
   spec.homepage      = ""
   spec.license       = "MIT"
