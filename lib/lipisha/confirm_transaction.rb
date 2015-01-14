@@ -11,7 +11,6 @@ module Lipisha
     end
 
     def confirm!
-
       self.response_body = connection.post(CALL_URL, self.to_params).body
       self.response      = JSON.parse(self.response_body)
       status                  = response['status'] || {}
@@ -19,7 +18,8 @@ module Lipisha
       self.status_description = status['status_description']
       self.success            = status['status'] == 'SUCCESS'
       if response['content'] && !response['content'].empty?
-        content = response['content'].first #ths assumption is that we'll be only checking one confirmation code
+        #this assumes that we'll be only checking one confirmation code at a time
+        content = response['content'].first
       else
         content = {}
       end
@@ -30,7 +30,7 @@ module Lipisha
       self.transaction_mobile_number  = content['transaction_mobile_number']
       return self.success
     rescue => e
-      self.success            = false
+      self.success = false
     end
 
     def to_params
