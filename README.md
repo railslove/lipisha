@@ -1,8 +1,8 @@
 # Lipisha
 
-A gem to interact with the Lipisha API. 
+A gem to interact with the Lipisha API.
 
-Currently supporting the SendMoney endpoint. 
+Currently supporting the SendMoney and ConfirmTransaction endpoints.
 
 ## Usage
 
@@ -33,6 +33,24 @@ end
 
 ```
 
+Confirm Transaction:
+
+```ruby
+
+confirm_transaction = Lipisha::ConfirmTransaction.new(:transaction => 'FX123456')
+if confirm_transaction.confirm!
+  puts confirm_transaction.transaction_sender_name
+  puts confirm_transaction.transaction_mobile_number
+  puts confirm_transaction.transaction_reference
+  puts confirm_transaction.transaction_amount
+  puts confirm_transaction.success
+  puts confirm_transaction.status_code
+  puts confirm_transaction.status_description
+else
+  puts confirm_transaction.response_body
+end
+
+```
 
 
 ## Contributing
