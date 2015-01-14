@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'debugger'
 
 describe Lipisha::ConfirmTransaction do
   subject { Lipisha::ConfirmTransaction.new({
