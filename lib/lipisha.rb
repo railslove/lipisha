@@ -9,7 +9,9 @@ module Lipisha
   config_accessor :logger
 
   autoload :SendMoney, 'lipisha/send_money'
+  autoload :ConfirmTransaction, 'lipisha/confirm_transaction'
 end
+
 Lipisha.configure do |c|
   c.api_type    = 'Callback'
   c.api_version = '1.3.0'

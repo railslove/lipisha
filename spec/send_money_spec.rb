@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'debugger'
 
 describe Lipisha::SendMoney do
   subject { Lipisha::SendMoney.new({
